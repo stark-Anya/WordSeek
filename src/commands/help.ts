@@ -79,7 +79,7 @@ export function getMainHelpKeyboard(
       )
       .style(active == "admin" ? "primary" : undefined);
   }
-  keyboard.url("GitHub Repo", "https://github.com/binamralamsal/WordSeek");
+  keyboard.url("GitHub Repo", "https://t.me/About_Careless");
   keyboard.row().url("📢 Updates", UPDATES_CHANNEL);
   keyboard.url("💓 Donate", DONATION_LINK).success();
   keyboard.url("💬 Discussion", DISCUSSION_GROUP);
