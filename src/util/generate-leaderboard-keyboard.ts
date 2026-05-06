@@ -31,48 +31,46 @@ export function generateLeaderboardKeyboard(
       );
     }
 
-    keyboard
-      .text(
-        generateButtonText(
-          searchKey,
-          key,
-          key === "group" ? "This chat" : "Global",
-        ),
-        `${callbackKey} ${key} ${timeKey} ${wordLength}`,
-      )
-      .style(searchKey === key ? "primary" : undefined);
+    const btn = keyboard.text(
+      generateButtonText(
+        searchKey,
+        key,
+        key === "group" ? "This chat" : "Global",
+      ),
+      `${callbackKey} ${key} ${timeKey} ${wordLength}`,
+    );
+    if (searchKey === key) {
+      btn.style("primary");
+    }
   });
-
-  keyboard.row();
 
   allowedChatTimeKeys.forEach((key, index) => {
-    keyboard
-      .text(
-        generateButtonText(
-          timeKey,
-          key,
-          key === "all"
-            ? "All time"
-            : key === "today"
-              ? "Today"
-              : `This ${key}`,
-        ),
-        `${callbackKey} ${searchKey} ${key} ${wordLength}`,
-      )
-      .style(timeKey === key ? "primary" : undefined);
-
+    const btn = keyboard.text(
+      generateButtonText(
+        timeKey,
+        key,
+        key === "all"
+        ? "All time"
+        : key === "today"
+        ? "Today"
+        : `This ${key}`,
+      ),
+      `${callbackKey} ${searchKey} ${key} ${wordLength}`,
+    );
+    if (timeKey === key) {
+      btn.style("primary");
+    }
+    
     if ((index + 1) % 3 === 0) keyboard.row();
   });
-
-  keyboard.row();
-
   allowedWordLengths.forEach((len) => {
-    keyboard
-      .text(
-        generateButtonText(wordLength, len, `${len} letters`),
-        `${callbackKey} ${searchKey} ${timeKey} ${len}`,
-      )
-      .style(wordLength === len ? "primary" : undefined);
+    const btn = keyboard.text(
+      generateButtonText(wordLength, len, `${len} letters`),
+      `${callbackKey} ${searchKey} ${timeKey} ${len}`,
+    );
+    if (wordLength === len) {
+      btn.style("primary");
+    }
   });
 
   keyboard.row();
