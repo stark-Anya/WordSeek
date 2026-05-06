@@ -50,26 +50,30 @@ export function getMainHelpKeyboard(
   shouldShowAdmin: boolean,
   active: HelpSection = "howto",
 ) {
-  const keyboard = new InlineKeyboard()
-    .text(formatActiveButton("How to Play", active === "howto"), "help_howto")
-    .style(active == "howto" ? "primary" : undefined)
-    .text(
-      formatActiveButton("Leaderboard & Scores", active === "scores"),
-      "help_scores",
-    )
-    .style(active == "scores" ? "primary" : undefined)
-    .row()
-    .text(
-      formatActiveButton("Group Settings", active === "group"),
-      "help_group",
-    )
-    .style(active == "group" ? "primary" : undefined)
-    .text(
-      formatActiveButton("Other Commands", active === "other"),
-      "help_other",
-    )
-    .style(active == "other" ? "primary" : undefined);
+  const keyboard = new InlineKeyboard();
 
+// Row 1
+const btn1 = keyboard.text(
+  formatActiveButton("How to Play", active === "howto"),
+  "help_howto"
+);
+  if (active === "howto") btn1.style("primary");
+  const btn2 = keyboard.text(
+    formatActiveButton("Leaderboard & Scores", active === "scores"),
+    "help_scores"
+  );
+  if (active === "scores") btn2.style("primary");
+  keyboard.row();
+  const btn3 = keyboard.text(
+    formatActiveButton("Group Settings", active === "group"),
+    "help_group"
+  );
+  if (active === "group") btn3.style("primary");
+  const btn4 = keyboard.text(
+    formatActiveButton("Other Commands", active === "other"),
+    "help_other"
+  );
+  if (active === "other") btn4.style("primary");
   if (shouldShowAdmin) {
     keyboard
       .row()
@@ -81,7 +85,7 @@ export function getMainHelpKeyboard(
   }
   keyboard.url("GitHub Repo", "https://t.me/About_Careless");
   keyboard.row().url("📢 Updates", UPDATES_CHANNEL);
-  keyboard.url("💓 Donate", DONATION_LINK).success();
+  keyboard.url("💓 Donate", DONATION_LINK);
   keyboard.url("💬 Discussion", DISCUSSION_GROUP);
 
   return keyboard;
